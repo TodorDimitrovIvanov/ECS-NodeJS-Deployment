@@ -2,9 +2,7 @@
 resource "aws_lb" "nodejs-lb" {
   name = "nodejs-lb"
   internal = false # Set to true if for internal traffic only
-  security_groups = [aws_security_group.app_sg.id] # Replace with your security group
-
-  subnets = aws_subnet.public_subnets.*.id
+  security_groups = [aws_security_group.nodejs-cluster-sec-grp.id] # Replace with your security group
 
   load_balancer_type = "application"
 }

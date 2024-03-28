@@ -1,3 +1,4 @@
+
 resource "aws_ecs_cluster" "nodejs-cluster" {
   name = "nodejs-cluster"
 }
@@ -11,8 +12,8 @@ resource "aws_ecs_service" "nodejs-cluster-service" {
   launch_type     = "EC2"
 
   network_configuration {
-    subnets         = ["subnet-xxxxxx"]
-    security_groups = ["sg-xxxxxx"]
+    subnets         = ["aws_subnet.nodejs-cluster-subnet.id"]
+    security_groups = ["aws_security_group.nodejs-cluster-sec-grp.id"]
   }
 
   depends_on = [aws_ecs_task_definition.nodejs-cluster-container]
@@ -24,7 +25,7 @@ resource "aws_ecs_task_definition" "nodejs-cluster-container" {
   [
     {
       "name": "nodejs-container",
-      "image": "your_docker_image",
+      "image": "node:hydrogen-buster-slim",
       "cpu": 256,
       "memory": 512,
       "essential": true,
