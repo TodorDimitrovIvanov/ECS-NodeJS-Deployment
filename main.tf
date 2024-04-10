@@ -1,14 +1,10 @@
+variable "region" {}
+variable "ami" {}
+
 provider "aws" {
-  region = "eu-central-1"
+  region = "${region}"
 }
 
 module "setup" {
   source = "./modules"
-}
-
-variable "ami" {
-  type = map 
-  default = {
-    debian = "ami-042e6fdb154c830c5"
-  }
 }
