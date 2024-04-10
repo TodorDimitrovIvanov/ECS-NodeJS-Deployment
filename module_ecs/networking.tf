@@ -1,10 +1,3 @@
-variable "vpc_cidr" {}
-variable "sub1_cidr" {}
-variable "sub2_cidr" {}
-variable "zone1" {}
-variable "zone2" {}
-variable "cluster_name" {}
-
 
 // The networking containing a list of available addresses 
 resource "aws_vpc" "cluster-vpc" {

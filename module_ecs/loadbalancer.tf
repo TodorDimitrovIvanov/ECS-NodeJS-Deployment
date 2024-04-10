@@ -1,6 +1,5 @@
-// The traffic router itself 
-variable "cluster_name" {}
 
+// The traffic router itself 
 resource "aws_lb" "cluster-lb" {
   name = "${var.cluster_name}-lb"
   internal = false 
