@@ -7,8 +7,8 @@ resource "aws_vpc" "nodejs-cluster-vpc" {
 # The subnetwork for the ECS cluster and its containers 
 resource "aws_subnet" "nodejs-cluster-subnet" {
   vpc_id     = aws_vpc.nodejs-cluster-vpc.id
-  cidr_block = "10.0.1.0/24" 
-  availability_zone = "eu-central-1" 
+  cidr_block = "10.0.0.0/16" 
+  availability_zone = "eu-central-1a" 
 
   # Enable public access for internet gateway attachment later
   map_public_ip_on_launch = true
@@ -27,12 +27,6 @@ resource "aws_route_table" "public_route_table" {
     cidr_block = "0.0.0.0/0" # Route all outbound traffic to internet gateway
     gateway_id = aws_internet_gateway.internet_gateway.id
   }
-}
-
-# Linking of subnet to route table 
-resource "aws_subnet_route_table_association" "public_subnet_association" {
-  subnet_id = aws_subnet.public_subnet.id
-  route_table_id = aws_route_table.public_route_table.id
 }
 
 # Security group for the ECS cluster and its containers
