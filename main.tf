@@ -20,3 +20,8 @@ module "ecs" {
   zone2 = var.zone2
   cluster_name = var.cluster_name
 }
+
+output "lb_dns" {
+    value = "${module.ecs.load_balancer_dns_name}"
+    description = "The public(?) DNS of the Load Balancer"
+}
